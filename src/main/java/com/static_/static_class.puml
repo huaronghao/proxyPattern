@@ -1,0 +1,24 @@
+@startuml
+
+interface IDBQuery {
+   +request():String
+}
+
+class DBQuery {
+   +<<implement>> request():String
+}
+
+class DBQueryProxy {
+   +<<implement>> request():String
+}
+
+class TestStatic {
+    + main
+}
+
+DBQuery ..up..|> IDBQuery:request
+DBQueryProxy ..up..|> IDBQuery:request
+DBQuery <--left--o DBQueryProxy
+TestStatic -left-> IDBQuery
+
+@enduml
