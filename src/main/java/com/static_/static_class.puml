@@ -1,24 +1,24 @@
 @startuml
 
-interface IDBQuery {
-   +request():String
+interface IUser {
+   +isAuthUser():boolean
 }
 
-class DBQuery {
-   +<<implement>> request():String
+class UserImpl {
+   +<<implement>> isAuthUser():boolean
 }
 
-class DBQueryProxy {
-   +<<implement>> request():String
+class UserProxy {
+   +<<implement>> isAuthUser():boolean
 }
 
-class TestStatic {
-    + main
+class ProxyClient {
+    + main()
 }
 
-DBQuery ..up..|> IDBQuery:request
-DBQueryProxy ..up..|> IDBQuery:request
-DBQuery <--left--o DBQueryProxy
-TestStatic -left-> IDBQuery
+UserImpl ..up..|> IUser:request
+UserProxy ..up..|> IUser:request
+UserImpl <--left--o UserProxy
+ProxyClient -left-> IUser
 
 @enduml
